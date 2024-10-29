@@ -1,0 +1,14 @@
+upstream rpc-gateway {
+   server rpc-gateway-01;
+   server rpc-gateway-02;
+   server rpc-gateway-03;
+}
+
+server {
+   listen 80;
+
+   location /rpc {
+      proxy_pass http://rpc-gateway;
+   }
+
+}

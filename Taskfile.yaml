@@ -1,0 +1,10 @@
+version: "3"
+
+tasks:
+  up:
+    dir: ./deployments/docker
+    cmd: docker compose up -d
+
+  down:
+    dir: ./deployments/docker
+    cmd: docker compose down

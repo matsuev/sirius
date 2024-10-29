@@ -1,0 +1,26 @@
+services:
+  balancer:
+    image: nginx:1.27.2-alpine3.20
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./configs/nginx:/etc/nginx/templates
+
+  # database:
+  #   image: postgres:14
+  #   ports:
+  #     - "127.0.0.1:5432:5432"
+
+  # rpc-gateway-01:
+
+  # rpc-gateway-02:
+
+  # rpc-gateway-03:
+
+
+# volumes:
+
+# networks:
+  
+  
