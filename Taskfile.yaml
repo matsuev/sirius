@@ -1,10 +1,28 @@
 version: "3"
 
+dotenv:
+  - .env
+
 tasks:
+  gateway:
+    cmd: go run ./backend/service/gateway
+
+  build:
+    cmds:
+      - go mod tidy
+      - docker buildx build --file ./deployments/docker/builder.Dockerfile -t service-builder:latest .
+
   up:
     dir: ./deployments/docker
-    cmd: docker compose up -d
+    cmds:
+      - task: build
+      - docker compose up -d --build
 
   down:
     dir: ./deployments/docker
     cmd: docker compose down
+
+  restart:
+    cmds:
+      - task: down
+      - task: up

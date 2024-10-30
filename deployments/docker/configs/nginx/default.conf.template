@@ -1,4 +1,5 @@
 upstream rpc-gateway {
+   least_conn;
    server rpc-gateway-01;
    server rpc-gateway-02;
    server rpc-gateway-03;

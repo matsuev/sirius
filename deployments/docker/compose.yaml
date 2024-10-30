@@ -6,18 +6,36 @@ services:
       - 80:80
     volumes:
       - ./configs/nginx:/etc/nginx/templates
+    depends_on:
+      - rpc-gateway-01
+      - rpc-gateway-02
+      - rpc-gateway-03
 
   # database:
   #   image: postgres:14
   #   ports:
   #     - "127.0.0.1:5432:5432"
 
-  # rpc-gateway-01:
+  rpc-gateway-01:
+    restart: unless-stopped
+    build:
+      args:
+        SERVICE: gateway
+      dockerfile: service.Dockerfile
 
-  # rpc-gateway-02:
+  rpc-gateway-02:
+    restart: unless-stopped
+    build:
+      args:
+        SERVICE: gateway
+      dockerfile: service.Dockerfile
 
-  # rpc-gateway-03:
-
+  rpc-gateway-03:
+    restart: unless-stopped
+    build:
+      args:
+        SERVICE: gateway
+      dockerfile: service.Dockerfile
 
 # volumes:
 
