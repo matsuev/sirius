@@ -42,4 +42,4 @@
 ```
 
 
-![lab-01-diagram drawio](./lab-01-diagram.drawio.png)
+![lab-01-diagram drawio](lab-01-diagram.drawio.png)
