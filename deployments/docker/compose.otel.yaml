@@ -1,0 +1,19 @@
+services:
+  collector:
+    image: grafana/otel-lgtm:0.7.8
+    environment:
+      - GF_PATHS_DATA=/data/grafana
+    volumes:
+      - ./data/grafana:/data/grafana
+      - ./data/prometheus:/data/prometheus
+      - ./data/loki:/loki
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "3000:3000"
+    healthcheck:
+      test: curl --silent --fail localhost:3000 || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s

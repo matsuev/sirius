@@ -1,0 +1,13 @@
+version: "3"
+
+includes:
+  docker:
+    taskfile: ./deployments/docker/Taskfile.yaml
+    dir: ./deployments/docker
+    optional: true
+
+tasks:
+  app:
+    silent: true
+    cmds:
+      - go run ./cmd/app
