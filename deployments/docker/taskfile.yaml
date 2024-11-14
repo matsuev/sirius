@@ -1,0 +1,22 @@
+version: "3"
+
+tasks:
+  build:
+    dir: ../../
+    cmds:
+      - go mod tidy
+      - docker buildx build --file ./deployments/docker/builder.Dockerfile -t service-builder:latest .
+
+  up:
+    cmds:
+      - task: build
+      - docker compose up -d --build {{.CLI_ARGS}}
+
+  down:
+    cmds:
+      - docker compose down {{.CLI_ARGS}}
+
+  restart:
+    cmds:
+      - task: down
+      - task: up

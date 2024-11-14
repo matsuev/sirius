@@ -1,0 +1,10 @@
+version: "3"
+
+dotenv:
+  - .env
+
+includes:
+  docker:
+    taskfile: ./deployments/docker/taskfile.yaml
+    dir: ./deployments/docker
+    optional: true

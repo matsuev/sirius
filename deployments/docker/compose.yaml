@@ -1,0 +1,24 @@
+include:
+  - ./compose.logging.yaml
+  - ./compose.infrastructure.yaml
+
+services:
+  gateway:
+    restart: unless-stopped
+    build:
+      args:
+        SERVICE: gateway
+      dockerfile: service.Dockerfile
+    ports:
+      - 127.0.0.1:8082:8082
+    labels:
+      logging: "grafana"
+
+  worker:
+    restart: unless-stopped
+    build:
+      args:
+        SERVICE: worker
+      dockerfile: service.Dockerfile
+    labels:
+      logging: "grafana"
